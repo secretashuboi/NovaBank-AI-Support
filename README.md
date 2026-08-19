@@ -603,6 +603,18 @@ https://github.com/secretashuboi/NovaBank-AI-Support
   <i>Turning customer conversations into intelligent support.</i>
 </p>
 
+## 🎥 Demo
+
+The application provides an interactive Streamlit interface for AI-powered customer support, including:
+
+- 🤖 Intent classification
+- 📚 RAG-based response generation
+- 💬 Conversation memory
+- 🎫 Automated ticket generation
+- 📊 Ticket intelligence and analytics
+
+🔗 **Live Demo:** [Try NovaBank AI Support](https://novabank-ai-support-by-ashu.streamlit.app/)
+
 ## 📸 Screenshots
 
 ### 💬 AI Customer Support Conversation
