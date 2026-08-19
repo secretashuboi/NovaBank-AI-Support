@@ -1,905 +1,604 @@
-﻿# NovaBank AI Support
+# 🏦 NovaBank AI Support
 
+### 🤖 AI-Powered Banking Customer Support & Ticket Intelligence System
 
+<p align="center">
+  <b>Semantic NLP • RAG • FAISS • LLM • Conversation Memory • Ticket Intelligence • Streamlit</b>
+</p>
 
-An **AI-powered banking customer support and ticket intelligence system** that combines semantic intent classification, FAISS-based retrieval, Retrieval-Augmented Generation (RAG), conversation memory, and automated ticket intelligence.
-
-
-
-The system is designed around a fictional bank, **NovaBank**, and demonstrates how modern NLP and RAG techniques can be combined to build an end-to-end customer support workflow.
-
-
-
----
-
-
-
-## Features
-
-
-
-### AI Customer Support
-
-
-
-* Semantic customer-intent classification
-
-* Sentence-transformer embeddings
-
-* FAISS similarity search
-
-* Retrieval-Augmented Generation (RAG)
-
-* Grounded responses using the NovaBank knowledge base
-
-* Multi-turn conversation memory
-
-
-
-### Ticket Intelligence
-
-
-
-* Automatic intent detection
-
-* Ticket category classification
-
-* Sentiment analysis
-
-* Priority assignment
-
-* AI-generated ticket summaries
-
-* Suggested support actions
-
-* Automatic ticket creation
-
-* Ticket persistence using CSV
-
-* Ticket status management
-
-
-
-### Support Dashboard
-
-
-
-* Total ticket count
-
-* High/Medium/Low priority breakdown
-
-* Category analytics
-
-* Intent analytics
-
-* Ticket Explorer
-
-* Ticket filtering
-
-* Ticket status updates
-
-* Newly generated tickets appear in the dashboard
-
-
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Streamlit-App-red?logo=streamlit&logoColor=white" />
+  <img src="https://img.shields.io/badge/FAISS-Vector%20Search-green" />
+  <img src="https://img.shields.io/badge/RAG-Powered-purple" />
+  <img src="https://img.shields.io/badge/LLM-Groq-orange" />
+  <img src="https://img.shields.io/badge/Accuracy-90.81%25-brightgreen" />
+</p>
 
 ---
 
+## 🌟 Overview
 
+**NovaBank AI Support** is an end-to-end AI-powered banking customer support system designed to understand customer queries, retrieve relevant banking information, generate grounded responses, and automatically convert conversations into structured support tickets.
 
-## System Architecture
+The system combines **Machine Learning, Natural Language Processing, Semantic Search, Retrieval-Augmented Generation (RAG), LLMs, and Streamlit** into a single customer-support workflow.
 
+> 💡 **Goal:** Build a practical AI support system that can understand customers, answer their questions using trusted knowledge, remember conversations, and assist support teams with automated ticket intelligence.
 
+---
 
-```text
+## ✨ Key Features
 
-Customer Query
+| Feature                               | Description                                       |
+| ------------------------------------- | ------------------------------------------------- |
+| 🧠 **Semantic Intent Classification** | Understands the meaning behind customer queries   |
+| 🔎 **FAISS Vector Search**            | Retrieves the most relevant banking knowledge     |
+| 📚 **RAG Pipeline**                   | Grounds LLM responses using NovaBank knowledge    |
+| 🤖 **LLM Response Generation**        | Generates natural-language customer responses     |
+| 💬 **Conversation Memory**            | Maintains context across multiple turns           |
+| 🎫 **Ticket Intelligence**            | Converts conversations into structured tickets    |
+| 🏷️ **Category Detection**            | Automatically categorizes support issues          |
+| 😊 **Sentiment Analysis**             | Detects customer sentiment                        |
+| 🚨 **Priority Detection**             | Assigns HIGH / MEDIUM / LOW priority              |
+| 📊 **Analytics Dashboard**            | Provides ticket-level support analytics           |
+| 💾 **Ticket Persistence**             | Stores generated tickets for future analysis      |
+| 🔐 **Secure API Configuration**       | API keys are managed outside tracked source files |
 
-&#x20;     |
+---
 
-&#x20;     v
+# 🏗️ System Architecture
 
-Semantic Intent Classifier
+```mermaid
+flowchart TD
 
-&#x20;     |
+    A["👤 Customer Query"]
+    B["🧠 Semantic Intent Classifier"]
+    C["🔢 Query Embedding"]
+    D["⚡ FAISS Search"]
+    E["📚 NovaBank Knowledge Base"]
+    F["📄 RAG Context"]
+    G["🤖 Groq LLM"]
+    H["💬 Grounded Support Response"]
 
-&#x20;     v
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
 
-Query Embedding Model
+    H --> I["🧠 Conversation Memory"]
+    H --> J["🎫 Ticket Intelligence"]
 
-&#x20;     |
+    J --> K["🏷️ Category"]
+    J --> L["😊 Sentiment"]
+    J --> M["🚨 Priority"]
 
-&#x20;     v
+    K --> N["🎫 Support Ticket"]
+    L --> N
+    M --> N
 
-FAISS Search
-
-&#x20;     |
-
-&#x20;     v
-
-NovaBank Knowledge Base
-
-&#x20;     |
-
-&#x20;     v
-
-RAG Context
-
-&#x20;     |
-
-&#x20;     v
-
-Groq LLM
-
-&#x20;     |
-
-&#x20;     v
-
-Grounded Support Response
-
-&#x20;     |
-
-&#x20;     +------------------------+
-
-&#x20;     |                        |
-
-&#x20;     v                        v
-
-Conversation Memory    Ticket Intelligence
-
-&#x20;                             |
-
-&#x20;               +-------------+-------------+
-
-&#x20;               |             |             |
-
-&#x20;               v             v             v
-
-&#x20;            Category      Sentiment     Priority
-
-&#x20;               |             |             |
-
-&#x20;               +-------------+-------------+
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                      Support Ticket
-
-&#x20;                             |
-
-&#x20;                             v
-
-&#x20;                     Analytics Dashboard
-
+    N --> O["📊 Analytics Dashboard"]
 ```
 
+---
 
+# 🔎 RAG Pipeline
+
+NovaBank uses **Retrieval-Augmented Generation** to provide responses based on the bank's internal knowledge rather than relying only on the LLM's pretrained knowledge.
+
+```mermaid
+flowchart LR
+
+    A["💬 Customer Query"]
+    B["🧠 Intent Prediction"]
+    C["🔢 Sentence Embedding"]
+    D["⚡ FAISS Similarity Search"]
+    E["📚 Relevant Knowledge"]
+    F["📄 RAG Context"]
+    G["🤖 Groq LLM"]
+    H["✅ Grounded Response"]
+
+    A --> B --> C --> D --> E --> F --> G --> H
+```
+
+### 🔄 Pipeline Flow
+
+**Customer Query**
+↓
+**Intent Classification**
+↓
+**Query Embedding**
+↓
+**FAISS Similarity Search**
+↓
+**NovaBank Knowledge Retrieval**
+↓
+**RAG Context Construction**
+↓
+**Groq LLM**
+↓
+**Grounded Customer Response**
 
 ---
 
-
-
-## Tech Stack
-
-
-
-### Programming
-
-
-
-* Python
-
-
-
-### Machine Learning and NLP
-
-
-
-* Scikit-learn
-
-* Sentence Transformers
-
-* Transformers
-
-* Logistic Regression
-
-* TF-IDF
-
-* Natural Language Processing
-
-
-
-### Retrieval
-
-
-
-* FAISS
-
-* Sentence embeddings
-
-* Similarity-based retrieval
-
-
-
-### Generative AI
-
-
-
-* Groq API
-
-* `openai/gpt-oss-120b`
-
-
-
-### Application
-
-
-
-* Streamlit
-
-
-
-### Data and Persistence
-
-
-
-* Pandas
-
-* CSV
-
-* Joblib
-
-
-
-### Visualization
-
-
-
-* Matplotlib
-
-* Seaborn
-
-
-
----
-
-
-
-## Intent Classification
-
-
+# 🧠 Intent Classification
 
 Two approaches were implemented and compared.
 
+### 1️⃣ TF-IDF + Logistic Regression
 
-
-### TF-IDF + Logistic Regression
-
-
-
-The baseline model achieved:
-
-
+A traditional NLP baseline using TF-IDF text features.
 
 **Accuracy: 85.45%**
 
+### 2️⃣ Sentence Embeddings + Logistic Regression
 
-
-### Sentence Embeddings + Logistic Regression
-
-
-
-The semantic approach uses:
-
-
+Customer queries are transformed into semantic embeddings using:
 
 ```text
-
 all-MiniLM-L6-v2
-
 ```
 
-
-
-with 384-dimensional sentence embeddings.
-
-
-
-The model achieved:
-
-
+The resulting **384-dimensional embeddings** are used for intent classification.
 
 **Accuracy: 90.81%**
 
+### 📈 Performance Comparison
 
+| Model                                     |   Accuracy |
+| ----------------------------------------- | ---------: |
+| TF-IDF + Logistic Regression              | **85.45%** |
+| Sentence Embeddings + Logistic Regression | **90.81%** |
 
-This represents an improvement of approximately **5.36 percentage points** over the TF-IDF baseline.
-
-
-
-The semantic model was selected as the primary intent classifier because it better captures the meaning of customer queries rather than relying only on word-level features.
-
-
+🏆 **Improvement: +5.36 percentage points**
 
 ---
 
+# 🤖 RAG + LLM Response Generation
 
+After predicting the customer's intent, the system performs semantic retrieval from the NovaBank knowledge base.
 
-## RAG Pipeline
-
-
-
-The system uses a NovaBank-specific knowledge base containing **18 knowledge documents**.
-
-
-
-The documents are converted into sentence embeddings and stored in a FAISS index.
-
-
+### Retrieval Stack
 
 ```text
-
 Customer Query
-
-&#x20;     |
-
-&#x20;     v
-
-Sentence Embedding
-
-&#x20;     |
-
-&#x20;     v
-
-FAISS Similarity Search
-
-&#x20;     |
-
-&#x20;     v
-
-Relevant Knowledge
-
-&#x20;     |
-
-&#x20;     v
-
-RAG Prompt
-
-&#x20;     |
-
-&#x20;     v
-
-LLM
-
-&#x20;     |
-
-&#x20;     v
-
-Support Response
-
+      ↓
+Sentence Transformer
+      ↓
+384-Dimensional Embedding
+      ↓
+FAISS Index
+      ↓
+Relevant Knowledge Document
+      ↓
+RAG Context
+      ↓
+Groq LLM
+      ↓
+Customer Response
 ```
 
+### 🧩 Technologies
 
-
-The RAG approach helps the language model generate responses based on the available NovaBank knowledge instead of relying entirely on its pretrained knowledge.
-
-
+* **Embedding Model:** `all-MiniLM-L6-v2`
+* **Embedding Dimension:** 384
+* **Vector Search:** FAISS
+* **Knowledge Documents:** 18
+* **LLM:** `openai/gpt-oss-120b`
+* **LLM Provider:** Groq
 
 ---
 
+# 💬 Conversation Memory
 
+NovaBank supports multi-turn conversations instead of treating every customer message as an isolated query.
 
-## Conversation Memory
-
-
-
-The application maintains conversation history during a customer support session.
-
-
-
-Example:
-
-
+### Example
 
 ```text
+Customer: I lost my card.
 
-Customer:
+Assistant: I'm sorry to hear that. Please freeze your card...
 
-I lost my card.
+Customer: I have already frozen it.
 
+Assistant: That's a good first step...
 
+Customer: Can I get a replacement?
 
-Assistant:
-
-...
-
-
-
-Customer:
-
-I have already frozen it.
-
-
-
-Assistant:
-
-...
-
-
-
-Customer:
-
-Can I get a replacement?
-
+Assistant: Yes, I can help you with the replacement process...
 ```
 
-
-
-The system passes previous conversation turns to the response-generation stage so that follow-up questions can be interpreted in context.
-
-
+The conversation history is passed into the response-generation pipeline so the assistant can understand references to previous messages.
 
 ---
 
+# 🎫 Ticket Intelligence
 
+Customer conversations can automatically be transformed into structured support tickets.
 
-## Ticket Intelligence
+```mermaid
+flowchart TD
 
+    A["💬 Customer Conversation"] --> B["🧠 Intent Detection"]
 
+    B --> C["🏷️ Category"]
+    B --> D["😊 Sentiment"]
+    B --> E["🚨 Priority"]
 
-The ticket intelligence pipeline automatically transforms customer conversations into structured support tickets.
+    C --> F["📝 Ticket Summary"]
+    D --> F
+    E --> F
 
+    F --> G["🎫 Support Ticket"]
+    G --> H["💾 Persistent Storage"]
+    H --> I["📊 Analytics Dashboard"]
+```
 
+### Generated Ticket Information
 
-A generated ticket can contain:
+Each ticket can contain:
 
+* 🎫 Ticket ID
+* 🆔 Conversation ID
+* 🎯 Intent
+* 🏷️ Category
+* 😊 Sentiment
+* 📊 Sentiment Confidence
+* 🚨 Priority
+* 📝 AI-generated Summary
+* 💡 Suggested Action
+* 📌 Ticket Status
 
+---
+
+# 📊 Analytics Dashboard
+
+The Streamlit dashboard provides an overview of support activity.
+
+### Dashboard Capabilities
+
+* 🎫 Total ticket count
+* 🔴 High-priority tickets
+* 🟠 Medium-priority tickets
+* 🟢 Low-priority tickets
+* 🏷️ Category distribution
+* 🎯 Intent distribution
+* 📈 Ticket analytics
+* 🔍 Ticket Explorer
+* 🔄 Ticket status management
+
+---
+
+# 🖥️ Application
+
+The project is implemented using **Streamlit** to provide an interactive interface for both customer support and ticket intelligence.
+
+### Main Workflow
 
 ```text
-
-Ticket ID
-
-Conversation ID
-
-Intent
-
-Category
-
-Sentiment
-
-Sentiment Confidence
-
-Priority
-
-Summary
-
-Suggested Action
-
-Status
-
+Customer
+   ↓
+Ask Banking Question
+   ↓
+AI Understands Intent
+   ↓
+Relevant Knowledge Retrieved
+   ↓
+LLM Generates Response
+   ↓
+Conversation Continues
+   ↓
+Generate Support Ticket
+   ↓
+Ticket Analytics
 ```
-
-
-
-### Priority Logic
-
-
-
-High-priority intents include issues such as:
-
-
-
-* Lost or stolen card
-
-* Unrecognized card payment
-
-* Unrecognized cash withdrawal
-
-* Unable to verify identity
-
-
-
-Medium-priority cases include issues such as:
-
-
-
-* Pending transfer
-
-* Card not working
-
-* Failed top-up
-
-* Contactless not working
-
-
-
-Other supported intents are assigned lower priority according to the implemented rules.
-
-
 
 ---
 
-
-
-## Dashboard
-
-
-
-The Streamlit dashboard provides an interface for support teams to:
-
-
-
-* Monitor ticket volume
-
-* View priority distribution
-
-* Analyze categories
-
-* Explore individual tickets
-
-* Filter tickets
-
-* Update ticket status
-
-* Generate new tickets from conversations
-
-
-
-Ticket changes are persisted to:
-
-
+# 📁 Project Structure
 
 ```text
-
-data/multi\_tickets.csv
-
+NovaBank-AI-Support/
+│
+├── 📓 01_intent_classification_and_rag_retrieval.ipynb
+│   ├── Data preprocessing
+│   ├── TF-IDF baseline
+│   ├── Semantic embeddings
+│   ├── Intent classification
+│   └── FAISS retrieval
+│
+├── 📓 02_rag_response_generation.ipynb
+│   ├── RAG pipeline
+│   ├── Prompt construction
+│   ├── Groq LLM integration
+│   └── Conversation memory
+│
+├── 📓 03_ticket_intelligence.ipynb
+│   ├── Category mapping
+│   ├── Sentiment analysis
+│   ├── Priority detection
+│   ├── Ticket generation
+│   └── Ticket analytics
+│
+├── 🚀 app.py
+│   └── Main Streamlit application
+│
+├── 📂 data/
+│   ├── multi_tickets.csv
+│   ├── ticket_analytics.csv
+│   └── tickets.csv
+│
+├── 📂 models/
+│   ├── embedding_intent_classifier.pkl
+│   ├── intent_classifier.pkl
+│   ├── tfidf_vectorizer.pkl
+│   ├── novabank_faiss.index
+│   └── novabank_knowledge.pkl
+│
+├── 📄 README.md
+├── 📄 requirements.txt
+└── 📄 .gitignore
 ```
-
-
-
-Therefore, ticket status changes remain available after restarting the Streamlit application.
-
-
 
 ---
 
+# 🛠️ Tech Stack
 
+### 👨‍💻 Programming & Data
 
-## Project Structure
+* 🐍 Python
+* 🐼 Pandas
+* 🔢 NumPy
 
+### 🧠 Machine Learning & NLP
 
+* Scikit-learn
+* Sentence Transformers
+* Transformers
+* Logistic Regression
+* TF-IDF
+
+### 🔎 Retrieval & RAG
+
+* FAISS
+* Vector Embeddings
+* Retrieval-Augmented Generation
+
+### 🤖 Generative AI
+
+* Groq
+* `openai/gpt-oss-120b`
+
+### 🖥️ Application
+
+* Streamlit
+* Matplotlib
+* Seaborn
+
+### 💾 Model Persistence
+
+* Joblib
+
+### 🌐 Version Control
+
+* Git
+* GitHub
+
+---
+
+# 📚 Dataset
+
+The intent classification component uses the **Banking77** dataset.
+
+The dataset contains banking-related customer queries covering **77 different intents**.
+
+Examples include:
 
 ```text
-
-AI-Powered Banking Customer Support/
-
-|
-
-â”œâ”€â”€ app.py
-
-â”œâ”€â”€ README.md
-
-â”œâ”€â”€ requirements.txt
-
-â”œâ”€â”€ .gitignore
-
-|
-
-â”œâ”€â”€ 01\_intent\_classification\_and\_rag\_retrieval.ipynb
-
-â”œâ”€â”€ 02\_rag\_response\_generation.ipynb
-
-â”œâ”€â”€ 03\_ticket\_intelligence.ipynb
-
-|
-
-â”œâ”€â”€ data/
-
-|   â””â”€â”€ multi\_tickets.csv
-
-|
-
-â”œâ”€â”€ models/
-
-|   â”œâ”€â”€ embedding\_intent\_classifier.pkl
-
-|   â”œâ”€â”€ intent\_classifier.pkl
-
-|   â”œâ”€â”€ tfidf\_vectorizer.pkl
-
-|   â”œâ”€â”€ novabank\_faiss.index
-
-|   â””â”€â”€ novabank\_knowledge.pkl
-
-|
-
-â””â”€â”€ .streamlit/
-
-&#x20;   â””â”€â”€ secrets.toml
-
+lost_or_stolen_card
+card_not_working
+pending_transfer
+cash_withdrawal_not_recognised
+top_up_failed
+verify_my_identity
+exchange_rate
+card_payment_not_recognised
 ```
-
-
-
-> `secrets.toml` contains the API key and is excluded from version control using `.gitignore`.
-
-
 
 ---
 
+# 🔐 API Configuration
 
-
-## Installation
-
-
-
-Clone the repository and move into the project directory.
-
-
-
-Then install the required dependencies:
-
-
-
-```bash
-
-pip install -r requirements.txt
-
-```
-
-
-
----
-
-
-
-## API Configuration
-
-
+The Groq API key is **not stored directly in the source code**.
 
 Create:
 
-
-
 ```text
-
-.streamlit/secrets.toml
-
+.streamlit/
+└── secrets.toml
 ```
 
-
-
-and add your Groq API key:
-
-
+Add:
 
 ```toml
-
-GROQ\_API\_KEY = "YOUR\_API\_KEY"
-
+GROQ_API_KEY = "your_api_key_here"
 ```
 
+The application accesses the key using:
 
+```python
+import streamlit as st
+from groq import Groq
 
-**Never commit this file to GitHub.**
-
-
-
-The repository's `.gitignore` excludes:
-
-
-
-```text
-
-.streamlit/secrets.toml
-
-.env
-
+client = Groq(
+    api_key=st.secrets["GROQ_API_KEY"]
+)
 ```
 
-
+⚠️ **Never commit `secrets.toml` or expose your API key publicly.**
 
 ---
 
+# 🚀 Installation
 
-
-## Run the Application
-
-
-
-From the project directory:
-
-
+### 1️⃣ Clone the repository
 
 ```bash
-
-python -m streamlit run app.py
-
+git clone https://github.com/secretashuboi/NovaBank-AI-Support.git
+cd NovaBank-AI-Support
 ```
 
+### 2️⃣ Create a virtual environment
 
+```bash
+python -m venv venv
+```
 
-Then open the local Streamlit URL shown in the terminal.
+Activate it on Windows:
 
+```bash
+venv\Scripts\activate
+```
 
+### 3️⃣ Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4️⃣ Configure API key
+
+Create:
+
+```text
+.streamlit/secrets.toml
+```
+
+and add your Groq API key.
+
+### 5️⃣ Run the application
+
+```bash
+streamlit run app.py
+```
 
 ---
 
-
-
-## Example Customer Queries
-
-
+# 🎯 Example Customer Queries
 
 Try queries such as:
 
-
-
 ```text
+💳 I lost my debit card.
 
-I lost my card
+💸 My transfer is still pending.
 
+💰 My cash withdrawal is not showing correctly.
+
+🔐 Why do I need to verify my identity?
+
+💵 What exchange rate will I get?
+
+💳 My card payment was declined.
+
+📱 Can I get a virtual card?
 ```
-
-
-
-```text
-
-Someone used my card and I don't recognize the payment
-
-```
-
-
-
-```text
-
-My transfer is still pending
-
-```
-
-
-
-```text
-
-Why can't I verify my identity?
-
-```
-
-
-
-```text
-
-What exchange rate do you use?
-
-```
-
-
-
-The system predicts the intent, retrieves relevant banking knowledge, and generates a support response.
-
-
 
 ---
 
+# ⚠️ Limitations
 
+Although the system demonstrates an end-to-end AI support workflow, several areas can be improved:
 
-## Limitations
+* Sentiment detection may classify some neutral banking queries as negative.
+* Some closely related banking intents can be difficult for the classifier to distinguish.
+* The current knowledge base is intentionally limited to NovaBank's demonstration content.
+* LLM responses depend on the quality and coverage of retrieved context.
+* Priority assignment currently uses rule-based logic for selected intents.
 
-
-
-This project is a portfolio implementation and uses a fictional banking knowledge base.
-
-
-
-Some limitations were observed during testing:
-
-
-
-* Certain closely related banking intents can be confused by the classifier.
-
-* Generic sentiment models may classify neutral banking questions incorrectly.
-
-* Generated response quality depends on the retrieved knowledge and language model.
-
-* The knowledge base contains a limited number of NovaBank-specific documents.
-
-* Ticket persistence currently uses CSV rather than a production database.
-
-* The system is not connected to real banking accounts or financial systems.
-
-
-
-These limitations are intentionally documented rather than hidden.
-
-
+These limitations provide opportunities for future improvements.
 
 ---
 
+# 🚀 Future Improvements
 
+### 🔮 Planned Enhancements
 
-## Future Improvements
-
-
-
-Potential future improvements include:
-
-
-
-* Fine-tuning a domain-specific sentiment classifier
-
-* Improving intent classification for closely related banking intents
-
-* Expanding the NovaBank knowledge base
-
-* Adding a vector database for larger-scale retrieval
-
-* Replacing CSV persistence with PostgreSQL or another production database
-
-* Adding authentication and role-based access
-
-* Adding real-time ticket notifications
-
-* Adding human-agent escalation
-
-* Deploying the application to a cloud platform
-
-* Adding monitoring and model-performance tracking
-
-
+* [ ] 🔐 Add authentication and role-based access
+* [ ] 🧠 Improve intent classification for difficult intents
+* [ ] 📚 Expand the NovaBank knowledge base
+* [ ] 🎯 Add reranking to improve retrieval quality
+* [ ] 🧩 Add hybrid search
+* [ ] 🧠 Improve sentiment classification
+* [ ] 🚨 Learn priority from historical ticket data
+* [ ] 📊 Add advanced support-team analytics
+* [ ] 💾 Add a production database
+* [ ] ☁️ Deploy the application to the cloud
+* [ ] 🔄 Add automated model monitoring
+* [ ] 🧪 Add automated testing and CI/CD
 
 ---
 
+# 🏆 Project Highlights
 
-
-## Project Objective
-
-
-
-The goal of this project is to demonstrate an end-to-end **AI customer support workflow** combining:
-
-
-
-**Machine Learning + NLP + Semantic Search + RAG + Generative AI + Ticket Intelligence + Streamlit**
-
-
-
-rather than implementing a simple chatbot alone.
-
-
+```text
+🧠 Semantic Intent Classification
+        ↓
+📈 90.81% Classification Accuracy
+        ↓
+🔎 FAISS Vector Retrieval
+        ↓
+📚 RAG Knowledge Grounding
+        ↓
+🤖 Groq LLM Response Generation
+        ↓
+💬 Conversation Memory
+        ↓
+🎫 Automated Ticket Intelligence
+        ↓
+📊 Interactive Analytics Dashboard
+```
 
 ---
 
+# 🎓 Project Objective
 
+The objective of **NovaBank AI Support** is to demonstrate how modern AI technologies can be combined to build a practical customer-support system.
 
-## Author
+Rather than implementing a standalone chatbot, this project connects:
 
+**Machine Learning + NLP + Semantic Search + RAG + LLMs + Ticket Intelligence + Analytics**
 
+into one complete workflow.
 
-**Ashutosh Yadav**
+---
 
+# 👨‍💻 Author
 
+### **Ashutosh Yadav**
 
-B.Tech CSE (AI/ML)
+🎓 B.Tech CSE — AI/ML
+💡 Interested in Machine Learning, Data Science & Generative AI
 
+<p align="center">
 
+⭐ If you found this project interesting, consider giving it a star!
 
-Interested in:
+</p>
 
+---
 
+## 📌 Project Repository
 
-* Machine Learning
+🔗 **GitHub:**
+https://github.com/secretashuboi/NovaBank-AI-Support
 
-* Data Science
+---
 
-* NLP
-
-* Generative AI
-
-* RAG Systems
-
-* AI Applications
-
-
-
-
+<p align="center">
+  <b>🏦 NovaBank AI Support</b><br>
+  <i>Turning customer conversations into intelligent support.</i>
+</p>
