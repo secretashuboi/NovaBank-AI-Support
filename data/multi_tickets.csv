@@ -1,0 +1,17 @@
+ticket_id,conversation_id,customer_conversation,intent,category,sentiment,sentiment_confidence,priority,status,summary,suggested_action
+NB-00001,C001,I lost my card and I have already frozen it. Can I get a replacement?,lost_or_stolen_card,Cards,Negative,0.9997,HIGH,In Progress,The customer's main issue is that they lost their card and are requesting a replacement. They have already taken the action of freezing the lost card.,"The support agent should assist the customer with the replacement card process, verifying any required information to initiate the replacement."
+NB-00002,C002,I don't recognize a payment made with my card. I did not make this transaction.,card_payment_not_recognised,Payments,Negative,0.9993,HIGH,Open,"The customer is reporting an unrecognized payment made with their card, stating that they did not initiate the transaction.","The support agent should request additional details about the unrecognized transaction, such as the date, amount, and merchant, to assist with further investigation and potential dispute resolution."
+NB-00003,C003,My bank transfer is still pending. It has been pending for a while.,pending_transfer,Transfers,Negative,0.9923,MEDIUM,Open,The customer's main issue is that their bank transfer is still pending after an unspecified amount of time. No specific actions taken by the customer have been mentioned.,"Request the customer to provide the transfer details, including the date initiated and the recipient's information, to investigate the pending status of their bank transfer."
+NB-00004,C004,My top up failed and the money was not added to my account.,top_up_reverted,Top Up,Negative,0.9997,MEDIUM,Open,The customer's main issue is that their top-up transaction failed and the funds were not added to their account. No prior actions or troubleshooting steps have been mentioned.,"Request the customer to provide the top-up transaction details, such as the date and amount, to assist in investigating the failed top-up."
+NB-00005,C005,What exchange rate will I get when I exchange USD to another currency?,exchange_rate,Currency,Negative,0.9987,LOW,Open,The customer is inquiring about the exchange rate they will receive when exchanging USD to another currency. No prior actions have been mentioned.,Request the customer to specify the target currency and the amount they wish to exchange to provide a more accurate exchange rate quote.
+NB-00006,C006,My card is not working when I try to make a payment.,declined_card_payment,Payments,Negative,0.9994,LOW,Resolved,The customer's main issue is that their card is not working when attempting to make a payment. No prior actions or troubleshooting steps have been mentioned.,"The support agent should ask the customer for more details about the declined payment, such as the error message received or the location of the attempted transaction, to better understand the issue and provide further assistance."
+NB-00007,C007,I lost my card,lost_or_stolen_card,Cards,Negative,0.9997,HIGH,Open,,
+NB-00008,C008,"I lost my card
+I have already frozen it
+Can I get a replacement?",lost_or_stolen_card,Cards,Negative,0.9997,HIGH,Resolved,,
+NB-00009,C009,"i lost my card
+
+i freeze it
+
+new card
+",lost_or_stolen_card,Cards,Negative,0.999,HIGH,Open,,
