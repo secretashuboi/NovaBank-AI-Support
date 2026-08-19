@@ -602,3 +602,13 @@ https://github.com/secretashuboi/NovaBank-AI-Support
   <b>🏦 NovaBank AI Support</b><br>
   <i>Turning customer conversations into intelligent support.</i>
 </p>
+
+## 📸 Screenshots
+
+### 💬 AI Customer Support Conversation
+
+![NovaBank AI Support Conversation](screenshots/conversation.png)
+
+### 📊 Ticket Intelligence Dashboard
+
+![NovaBank Ticket Intelligence Dashboard](screenshots/dashboard.png)
